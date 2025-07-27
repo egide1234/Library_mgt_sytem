@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="p-5 mb-4 bg-light rounded-3 shadow-sm">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Welcome to the Library Management System</h1>
+      <p class="col-md-8 fs-4">
+        Easily manage your books, readers, and records all in one place. Whether you're a librarian or a student,
+        our platform helps you stay organized and informed.
+      </p>
+      <a class="btn btn-primary btn-lg" href="{% url 'readers' %}" role="button">Get Started</a>
+    </div>
+  </div>
+
+  <div class="row text-center mt-5">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">📚 Book Management</h5>
+          <p class="card-text">Add, update, and track books with ease in our digital library.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">👥 Reader Profiles</h5>
+          <p class="card-text">Keep detailed profiles for each reader, including borrowing history.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">📈 Reports</h5>
+          <p class="card-text">Generate reports to analyze borrowing trends and library usage.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

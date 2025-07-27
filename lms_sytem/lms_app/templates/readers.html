@@ -1,0 +1,104 @@
+{% extends 'index.html' %}
+{%  load static %}
+{% block content %}
+<div class="container-flex text-center justify-content-center align-items-center" style="">
+    <div class="row justify-content-center align-middle" style="">
+        <div class="col-md-4" style="background-color: green ;">
+            <h4 style="">Register new user</h4>
+        </div>
+        <div class="col-md-8" style="">
+            <h4>Search readers</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="container" style="overflow-y:auto;height:400px;background:#CEECF5">
+                <form class="d-flex" action="{% url 'save_reader' %}" method="POST">
+                    {% csrf_token %}
+                    <table class="table">
+                        <tr>
+                            <td>Name:</td>
+                            <td><input type="text" name="reader_name" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>Contact:</td>
+                            <td><input type="text" name="reader_contact" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>Reference ID:</td>
+                            <td><input type="text" name="reader_ref_id" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>Address:</td>
+                            <td><textarea class="form-control" name="address"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn btn-primary" type="submit">Save</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <ul>
+                    <li><small>Readers should not register multiple</small>
+                    <li>
+                    <li><small>Deplicate user will be deactivated</small>
+                    <li>
+                    <li><small>Contact information provided must be correct</small>
+                    <li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <nav class="navbar bg-body light">
+                    <div class="container-fluid justify-content-center align-items-center">
+                        <form class="d-flex" role="search" method="POST" action="{% url 'readers' %}">
+                            {% csrf_token %}
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="querry" value="{{querry}}">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <p>{{readers|length}} readers subscribed.</p>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="container" style="overflow-y:auto;height:400px">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <td>Reader ID</td>
+                            <td>Name</td>
+                            <td>Contacts</td>
+                            <td>Reference ID</td>
+                            <td>Address</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for reader in readers %}
+                        <tr>
+                            <td>{{ reader.id }}</td>
+                            <td>
+                                {% if reader.is_active %}
+                                <span class="btn btn-success">{{ reader.reader_name }}</span>
+                                {% else %}
+                                <span class="btn btn-secondary">{{ reader.reader_name }}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ reader.reader_contact }}</td>
+                            <td>{{ reader.refrence_id }}</td>
+                            <td>{{ reader.reader_address }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

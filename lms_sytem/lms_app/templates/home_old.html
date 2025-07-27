@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .my_label {
+          display : block;
+          color: blue;
+          font-size: 20px;
+        }
+    </style>
+    <title>Library</title>
+</head>
+<body>
+
+
+<h1>Welcome To our Library</h1>
+<form method="POST" action="{% url 'save' %}">
+    {% csrf_token %}
+    <table>
+        <tbody>
+        <tr>
+            <td><label class="my_label">Student Name:</label>
+            </td>
+            <td><input type="text" name="student_name">
+            </td>
+        </tr>
+
+        <tr>
+            <td><label class="my_label">Student Age:</label>
+            </td>
+            <td><input type="text" name="student_age">
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <button type="submit" style="background-color: green; display: block; margin-top: 15px ; margin-bottom: 15px; font-size: 20px; width: 100% ;color: white;">
+                    save
+                </button>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <br/>
+
+</form>
+</body>
+</html>
